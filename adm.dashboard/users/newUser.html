@@ -83,6 +83,23 @@
             background-color: #2c3e50;
             transform: translateY(-2px);
         }
+
+        .search-bar input#searchInput {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 5px;
+    font-size: 14px;
+    margin-right: 30px; /* Deixa espaço para o ícone PI */
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+    overflow: hidden; /* Oculta o texto que ultrapassa o limite */
+    text-overflow: ellipsis; /* Adiciona reticências ao final do texto que não cabe */
+}
+
+body.dark-mode .search-bar input#searchInput{
+    background-color: #202020;
+    color: #fff;
+}
     </style>
 </head>
 <body>
