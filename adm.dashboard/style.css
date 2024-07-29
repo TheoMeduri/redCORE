@@ -1,0 +1,788 @@
+/* Reset e Box Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Wrapper */
+.wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: #fff;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    transition: width 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .logo {
+    padding: 20px;
+    text-align: center;
+}
+
+.sidebar .logo img {
+    width: 150px;
+    height: auto;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .menu .menu-item {
+    position: relative;
+}
+
+.sidebar .menu .menu-item a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.3s;
+    transition: .5s ease-in-out;
+    margin-top: 5px;
+}
+
+.sidebar .menu .menu-item a:hover,
+.sidebar .menu .menu-item.active a {
+    color: #2c3e50;
+    margin-left: 15px;
+    border-radius: 15px 0 0 15px;
+    background-color: #f5f5f5;
+}
+
+.sidebar .menu .menu-item .icon {
+    margin-right: 15px;
+}
+
+.sidebar .menu .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #34495e;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.sidebar .menu-item.has-submenu:hover .submenu {
+    max-height: 300px; /* Ajuste este valor conforme necessário */
+    opacity: 1;
+}
+
+.sidebar .menu .submenu li {
+    padding: 10px 10px;
+}
+
+.sidebar .menu .submenu li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1; /* Coloca o texto e ícones acima do pseudo-elemento */
+    font-size: 15px;
+}
+
+.sidebar .menu .submenu li a:hover{
+    background-color: #1abc9c;
+    border-radius: 15px 3px 15px 3px;
+    margin-left: 0px;
+}
+
+body.dark-mode .sidebar .menu .submenu li a:hover {
+    background-color: #202020;
+}
+
+body.dark-mode .sidebar .menu .submenu li a.active {
+    background-color: #101010;
+}
+
+/* Animação das bordas */
+@keyframes borderAnimation {
+    0% {
+        border-radius: 15px 3px 15px 3px; /* Estado inicial */
+    }
+    50% {
+        border-radius: 3px 15px 3px 15px; /* Estado intermediário */
+    }
+    100% {
+        border-radius: 15px 3px 15px 3px; /* Estado final */
+    }
+}
+
+/* Estilo do item ativo no submenu */
+.sidebar .menu .submenu li a.active {
+    background-color: #1abc9c; /* Cor de fundo quando ativo */
+    color: #fff; /* Cor do texto */
+    border-radius: 15px 3px 15px 3px; /* Bordas arredondadas iniciais */
+    position: relative; /* Necessário para posicionar o pseudo-elemento */
+    overflow: hidden; /* Garante que o pseudo-elemento não ultrapasse o contêiner */
+    animation: borderAnimation 5s infinite; /* Animação contínua */
+}
+
+/* Estilo do texto e ícones */
+.sidebar .menu .submenu li a {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1; /* Coloca o texto e ícones acima do pseudo-elemento */
+}
+
+/* Animação do pseudo-elemento ao se tornar ativo */
+.sidebar .menu .submenu li a.active::before {
+    content: ""; /* Necessário para o pseudo-elemento */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); /* Cor de destaque com transparência */
+    z-index: 0; /* Fica atrás do texto */
+    transform: scaleX(1); /* Garante que o pseudo-elemento cobre o item ativo */
+    transition: transform 0.3s ease; /* Animação suave */
+}
+
+.sidebar .menu .submenu .submenu-icon {
+    margin-right: 15px;
+}
+
+/* Profile */
+.sidebar .profile {
+    margin-top: auto;
+    background-color: #34495e;
+    padding: 15px;
+}
+
+.sidebar .profile a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar .profile .profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .profile .profile-info .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #2c3e50; /* Cor do texto (inicial) igual ao fundo do menu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.sidebar .profile .profile-info img {
+    display: none; /* Oculta a imagem de perfil existente */
+}
+
+.sidebar .profile .profile-info .name {
+    font-size: 14px;
+}
+
+.sidebar .profile .icon {
+    margin-left: auto;
+    font-size: 20px;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    transition: width 0.3s;
+}
+
+.main-content header {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.main-content header h1 {
+    font-size: 24px;
+    color: #2c3e50;
+}
+
+body.dark-mode .main-content header h1 {
+    color: #3c5b7a;
+}
+
+
+/* Estilo Geral do Menu */
+.menu-item.has-submenu:hover .submenu {
+    max-height: 150px; /* Ajuste conforme necessário */
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 30px 8px 30px 8px;
+}
+
+ .modal img {
+    width: 80%;
+    margin-left: 30px;
+ }
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content form label {
+    margin-bottom: 5px;
+}
+
+.modal-content form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-content form button {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px 4px 10px;
+    cursor: pointer;
+}
+
+.modal-content form button:hover {
+    background-color: #34495e;
+}
+
+/* Contêiner da Tabela */
+.table-container {
+    margin: 20px;
+    overflow-x: auto; /* Permite rolar horizontalmente se a tabela for larga */
+}
+
+/* Estilo da Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho da Tabela */
+thead {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+thead th {
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+    border-bottom: 2px solid #34495e;
+}
+
+/* Corpo da Tabela */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #dfe6e9;
+}
+
+tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Status */
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.status.pending {
+    background-color: #f39c12;
+    color: #fff;
+}
+
+.status.resolved {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+/* Botões */
+.btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn.resolve {
+    background-color: #2ecc71;
+}
+
+.btn.resolve:hover {
+    background-color: #27ae60;
+}
+
+.btn.delete {
+    background-color: #e74c3c;
+}
+
+.btn.delete:hover {
+    background-color: #c0392b;
+}
+
+/* Estilo da Tabela em dispositivos móveis */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+
+.status.in-progress {
+    background-color: blue;
+    color: #fff;
+}
+.status.critical {
+    background-color: red;
+    color: #fff;
+}
+
+body.dark-mode {
+    background-color: #202020;
+    color: #e0e0e0;
+}
+
+/* Container dos Toggles */
+.toggle-container {
+    max-height: 620px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: scroll;
+}
+
+body.dark-mode .toggle-container {
+    background-color: #242424;
+    box-shadow: 0 0 5px #161616;
+}
+
+/* Títulos das Seções */
+.toggle-container h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 5px;
+}
+
+body.dark-mode .toggle-container h3 {
+    color: #fff;
+    border-bottom: 2px solid #3c5b7a;
+}
+
+/* Rótulos dos Toggles */
+.toggle-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #555;
+    transition: color 0.3s;
+}
+
+body.dark-mode .toggle-label {
+    color: #c2c2c2;
+}
+
+.toggle-label span {
+    font-weight: bold;
+}
+
+/* Estilo do Switch Toggle */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: background-color 0.4s, transform 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: transform 0.4s;
+}
+
+body.dark-mode .slider {
+    background-color: #595959;
+}
+
+/* Estado do Toggle Ativado */
+input:checked + .slider {
+    background-color: #2c3e50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Descrições dos Toggles */
+.toggle-container p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.toggle-container p span {
+    color: #3c5b7a;
+}
+
+body.dark-mode .toggle-container p {
+    color: #ecf0f1;
+}
+
+body.dark-mode input:checked + .slider {
+    background-color: #3c5b7a;
+}
+
+
+body.dark-mode .sidebar .menu .menu-item a:hover,
+body.dark-mode .sidebar .menu .menu-item.active a {
+      background-color: #202020;
+      color: #f5f5f5;
+}
+
+.graficos {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+
+.chart {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    height: 300px; /* Altura do gráfico */
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .chart {
+    background-color: #242424;
+    box-shadow: 0 0 5px #161616;
+}
+
+.bar {
+    position: relative;
+    width: 60px;
+    background-color: var(--bar-color);
+    border-radius: 8px 8px 2px 2px ;
+    height: 0;
+    animation: grow 2s ease-in-out forwards;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 14px;
+}
+
+@keyframes grow {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--bar-height);
+    }
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin: 15px 0;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+body.dark-mode .search-bar{
+     background-color: #202020;
+     border: 1px solid #232323;
+}
+
+.search-bar .bx-search {
+    color: #999;
+    margin-left: 5px;
+}
+
+body.dark-mode .search-bar .bx-search {
+    color: #fff;
+    margin-left: 5px;
+}
+
+.search-bar input[type="text"] {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 5px;
+    font-size: 14px;
+    margin-right: 30px; /* Deixa espaço para o ícone PI */
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+    overflow: hidden; /* Oculta o texto que ultrapassa o limite */
+    text-overflow: ellipsis; /* Adiciona reticências ao final do texto que não cabe */
+}
+
+body.dark-mode .search-bar input[type="text"]{
+    background-color: #202020;
+    color: #fff;
+}
+
+.search-bar .pi-icon {
+    font-family: 'Roboto', 'Arial', sans-serif; /* Substitua 'Roboto' por qualquer fonte de sua escolha */
+    cursor: pointer;
+    display: none; /* Visível por padrão */
+    background-color: #34495e;
+    padding: 8px 9px;
+    color: #fff;
+    position: absolute;
+    right: 2px; /* Ajusta a posição do ícone PI */
+    border-radius: 10px 2px 10px 2px;
+    font-size: 15px;
+}
+
+body.dark-mode .search-bar .pi-icon {
+    box-shadow: 0 0 8px #161616,
+    0 0 12px #161616;
+}
+
+/* Adicione o link para a fonte no HTML */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+
+.results {
+    width: 230px;
+    height: 150px;
+    overflow: scroll;
+    background-color: #202020;
+    margin-left: 10px;
+    margin-top: -18px;
+    border-radius: 0 0 4px 4px;
+    border: 1px solid #232323;
+    padding: 5px;
+}
+
+.results .user {
+    display: flex;
+    margin-top: 10px;
+    gap: 7px 10px;
+}
+
+.results .user .foto {
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    color: #202020;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.results .user .name {
+    margin-top: 10px;
+}
+
+.results .user .name .id {
+    color: #38546f;
+}
+
+.results hr {
+    margin-top: 10px;
+}
+
+/* Responsividade para iPad */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .search-bar {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .results {
+        width: auto; /* Ajuste a largura conforme necessário */
+    }
+}
+
+.search-bar input[type="text"] {
+    margin-right: 10px; /* Ajuste o espaço para o ícone PI conforme necessário */
+}
+
+body.dark-mode .search-bar input[type="text"] {
+    background-color: #202020;
+    color: #fff;
+}

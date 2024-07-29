@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Red Core - Admin</title>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../Logo-RedCORE-Branco-Horizontal.png" alt="Red Core">
+            </div>
+            <div class="search-bar">
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Pesquise aqui..." id="searchInput">
+                <span class="pi-icon" id="piIcon">PI</span>
+            </div>
+            <div class="results">
+                <div class="user">
+                    <span class="foto">M</span>
+                    <span class="name">Monique Meduri<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                <div class="user">
+                    <span class="foto">E</span>
+                    <span class="name">Enzo Matos<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                <div class="user">
+                    <span class="foto">T</span>
+                    <span class="name">Theo Meduri<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                <div class="user">
+                    <span class="foto">A</span>
+                    <span class="name">Amanda Jesus<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                <div class="user">
+                    <span class="foto">J</span>
+                    <span class="name">Juliana Santos...<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                <div class="user">
+                    <span class="foto">J</span>
+                    <span class="name">José Cristino...<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                <div class="user">
+                    <span class="foto">A</span>
+                    <span class="name">Anderson Xavier<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                <div class="user">
+                    <span class="foto">G</span>
+                    <span class="name">Gabriel Meduri<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                <div class="user">
+                    <span class="foto">A</span>
+                    <span class="name">Alice Silva<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                
+                <div class="user">
+                    <span class="foto">B</span>
+                    <span class="name">Bruno Souza<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                
+                <div class="user">
+                    <span class="foto">C</span>
+                    <span class="name">Carla Rocha<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                
+                <div class="user">
+                    <span class="foto">D</span>
+                    <span class="name">Diego Pereira<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                
+                <div class="user">
+                    <span class="foto">E</span>
+                    <span class="name">Eduardo Lima<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                
+                <div class="user">
+                    <span class="foto">F</span>
+                    <span class="name">Fernanda Costa<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                
+                <div class="user">
+                    <span class="foto">G</span>
+                    <span class="name">Gustavo Almeida<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                
+                <div class="user">
+                    <span class="foto">H</span>
+                    <span class="name">Helena Barbosa<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                
+                <div class="user">
+                    <span class="foto">I</span>
+                    <span class="name">Isabela Martins<span class="id">#1234</span></span>
+                </div>
+                <hr>
+                
+                <div class="user">
+                    <span class="foto">J</span>
+                    <span class="name">João Santos<span class="id">#1234</span></span>
+                </div>
+                <hr>
+            </div><br>
+
+            <ul class="menu">
+                <li class="menu-item active">
+                    <a href="index.html">
+                        <span class="icon"><i class='bx bxs-dashboard'></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <span class="icon"><i class='bx bx-user'></i></span>
+                        <span class="title">Users</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="./users/allUsers.html"><span class="submenu-icon"><i class='bx bx-list-ul'></i></span>All Users</a></li>
+                        <li><a href="./users/newUser.html"><span class="submenu-icon"><i class='bx bx-user-plus'></i></span>Add New</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <span class="icon"><i class='bx bx-receipt'></i></span>
+                        <span class="title">Relatórios</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="./relatorios/alarmes.html"><span class="submenu-icon"><i class='bx bx-alarm'></i></span>Relatórios de Alarmes</a></li>
+                        <li><a href="./relatorios/service.html"><span class="submenu-icon"><i class='bx bx-user-voice'></i></span>Relatório de Atendimento</a></li>
+                        <li><a href="./relatorios/chamado.html"><span class="submenu-icon"><i class='bx bxs-key'></i></span>Abertura de Chamado</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="./reports.html">
+                        <span class="icon"><i class='bx bx-chart'></i></span>
+                        <span class="title">Reports</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="./configs.html">
+                        <span class="icon"><i class='bx bx-cog'></i></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="profile">
+                <a href="#">
+                    <div class="profile-info">
+                        <img src="profile-pic.jpg" alt="Profile Picture">
+                        <span class="name" id="profileName" onclick="Profile()"></span>
+                    </div>
+                    <span class="icon" id="logoutButton"><i class='bx bx-log-out'></i></span>
+                </a>
+            </div>
+        </nav>
+        <div class="main-content">
+            <header>
+                <h1>Dashboard</h1>
+            </header>
+            <div class="content">
+                <div class="graficos">
+                    <div class="chart">
+                        <div class="bar" style="--bar-height: 15%; --bar-color: #4caf50;">Teste<br></div>
+                        <div class="bar" style="--bar-height: 50%; --bar-color: #2196f3;">Teste<br></div>
+                        <div class="bar" style="--bar-height: 90%; --bar-color: #f44336;">Teste<br></div>
+                        <div class="bar" style="--bar-height: 30%; --bar-color: #ffeb3b;">Teste<br></div>
+                    </div>
+                    <div class="chart">
+                        <div class="bar" style="--bar-height: 60%; --bar-color: #4caf50;">Teste<br></div>
+                        <div class="bar" style="--bar-height: 20%; --bar-color: #2196f3;">Teste<br></div>
+                        <div class="bar" style="--bar-height: 80%; --bar-color: #f44336;">Teste<br></div>
+                        <div class="bar" style="--bar-height: 100%; --bar-color: #ffeb3b;">Teste<br></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="../Logo-RedCORE-Preto-Horizontal.png" alt="">
+            <h2>Login</h2>
+            <br>
+            <form id="loginForm">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./js/login-register.js"></script>
+    <script src="./js/dark-mode.js"></script>
+</body>
+</html>

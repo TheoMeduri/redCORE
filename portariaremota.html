@@ -1,0 +1,385 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Red Core</title>
+</head>
+<body>
+    <div class="menu">
+        <ul class="menu-list">
+            <div class="logo">
+                <img src="Logo-RedCORE-Vermelho-Horizontal.png" alt="">
+            </div>
+
+            <li class="item-menu">
+                <a href="./index.html">
+                    <span class="icon"><i class='bx bxs-home'></i></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="./about.html">
+                    <span class="icon"><i class='bx bx-note'></i></span>
+                    <span class="title">Sobre Nós</span>
+                </a>
+            </li>
+            <li class="item-menu has-submenu">
+                <a href="#">
+                    <span class="icon"><i class='bx bx-briefcase-alt-2'></i></span>
+                    <span class="title">Serviços</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="./portariaremota.html" class="active">Portaria Remota</a></li>
+                    <li><a href="./monitoramento.html">Monitoramento de Alarme</a></li>
+                    <li><a href="./bms.html">Operação Predial (BMS)</a></li>
+                </ul>
+            </li>
+            <li class="item-menu has-submenu">
+                <a href="#">
+                    <span class="icon"><i class='bx bx-conversation'></i></span>
+                    <span class="title">Contato</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="comochegar.html">Como Chegar</a></li>
+                    <li><a href="telefone.html">Telefones</a></li>
+                    <li><a href="formscontact.html">Formulário de Contato</a></li>
+                </ul>
+            </li>
+
+            <li class="login">
+                <a href="#" id="loginBtn" class="LoginBtn">
+                    <span class="icon"><i class='bx bx-log-in'></i></span>
+                    <span class="title">Login</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <li class="Profile">
+        <a href="#">
+            <span id="title">Nome do Usuário</span>
+            <ul class="submenu-profile">
+                <a href="#" data-modal="myAccount" class="open-modal">
+                    <span class="icon"><i class='bx bxs-user-detail'></i></span>
+                    <span class="title">Minha Conta</span>
+                </a>
+                <a href="#" data-modal="history" class="open-modal">
+                    <span class="icon"><i class='bx bx-history'></i></span>
+                    <span class="title">Histórico</span>
+                </a>
+                <a href="#" data-modal="notification" class="open-modal">
+                    <span class="icon"><i class='bx bx-bell'></i></span>
+                    <span class="title">Notificações</span>
+                </a>
+                <a href="#" data-modal="reportError" class="open-modal">
+                    <span class="icon"><i class='bx bxs-key'></i></span>
+                    <span class="title">Abrir Chamado</span>
+                </a>
+                <a href="#" data-modal="settings" class="open-modal">
+                    <span class="icon"><i class='bx bx-cog'></i></span>
+                    <span class="title">Configurações</span>
+                </a>
+                <hr>
+                <a href="#" onclick="Sair()">
+                    <span class="icon"><i class='bx bx-log-out'></i></span>
+                    <span class="title">Sair</span>
+                </a>
+            </ul>
+        </a>
+    </li>
+    
+    <!-- Modals -->
+    <div id="myAccount" class="modal-profile">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('myAccount')">&times;</span>
+            <p>Conteúdo da Minha Conta</p>
+        </div>
+    </div>
+    
+    <div id="history" class="modal-profile">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('history')">&times;</span>
+            <p><i class='bx bx-history'></i>  Histórico</p><br>
+            <h1>Histórico de Chamado:</h1><br>
+            <div class="hist-chamado">
+
+            </div><br><br>
+            <h1>Histórico de Serviços:</h1><br>
+            <div class="hist-service">
+                
+            </div>
+        </div>
+    </div>
+    
+    <div id="notification" class="modal-profile">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('notification')">&times;</span>
+            <p>Conteúdo das Notificações</p>
+        </div>
+    </div>
+    
+    <div id="reportError" class="modal-profile">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('reportError')">&times;</span>
+            <h2>Abra um Chamado</h2><br>
+            <form id="reportErrorForm">
+                <label for="errorTitle">Título do Chamado:</label>
+                <input type="text" id="errorTitle" name="errorTitle" required><br>
+                
+                <label for="errorDescription">Descrição:</label>
+                <textarea id="errorDescription" name="errorDescription" rows="4" required></textarea><br>
+                
+                <label for="errorDate">Data do Chamado:</label>
+                <input type="date" id="errorDate" name="errorDate" required><br>
+
+                <label for="errorUser">Usuário</label>
+                <input type="text" id="errorUser" name="errorUser" required><br>
+                
+                <button type="submit">Enviar Relatório</button>
+            </form>
+        </div>
+    </div>
+    
+    
+    <div id="settings" class="modal-profile">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('settings')">&times;</span>
+            <p>Conteúdo das Configurações</p>
+        </div>
+    </div>
+    
+
+   <!-- Modal -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <img src="Logo-RedCORE-Preto-Horizontal.png" alt="">
+        <div id="modal-body">
+            <!-- Login Form -->
+            <div id="login-form">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Entrar</button>
+                </form>
+                <h3>Não tem conta? <a href="#" id="to-register">Cadastre já!</a></h3>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="hidden">
+                <h2>Cadastro</h2>
+                <form id="registerForm">
+                    <label for="reg-username">Usuário:</label>
+                    <input type="text" id="reg-username" name="username" required>
+                    <label for="reg-email">E-mail:</label>
+                    <input type="email" id="reg-email" name="email" required>
+                    <label for="reg-password">Senha:</label>
+                    <input type="password" id="reg-password" name="password" required>
+                    <button type="submit">Cadastrar</button>
+                </form>
+                <h3>Já tem conta? <a href="#" id="to-login">Voltar ao Login</a></h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const loginModal = document.getElementById('loginModal');
+    const closeButton = document.querySelector('.close-button');
+    const toRegisterLink = document.getElementById('to-register');
+    const toLoginLink = document.getElementById('to-login');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const loginBtn = document.getElementById('loginBtn');
+    const profile = document.querySelector('.Profile');
+    const profileName = document.getElementById('title');
+
+    // Verificar se há um usuário registrado no localStorage
+    const storedUser = localStorage.getItem('registeredUser');
+    if (storedUser) {
+        const user = JSON.parse(storedUser);
+        profileName.textContent = user.username;
+        loginBtn.style.display = 'none';
+        profile.style.display = 'block';
+    }
+
+    // Mostrar o modal de login
+    loginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.style.display = 'block';
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+    });
+
+    // Fechar o modal
+    closeButton.addEventListener('click', () => {
+        loginModal.style.display = 'none';
+    });
+
+    // Alternar para o formulário de registro
+    toRegisterLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.classList.add('fade-out');
+        setTimeout(() => {
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            registerForm.classList.add('fade-in');
+            loginForm.classList.remove('fade-out'); // Remove fade-out após a transição
+        }, 500); // Tempo para o fade-out
+    });
+
+    // Alternar para o formulário de login
+    if (toLoginLink) {
+        toLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerForm.classList.add('fade-out');
+            setTimeout(() => {
+                registerForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+                loginForm.classList.add('fade-in');
+                registerForm.classList.remove('fade-out'); // Remove fade-out após a transição
+            }, 500); // Tempo para o fade-out
+        });
+    }
+
+    // Submissão do formulário de login
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const baseUsername = document.getElementById('username').value;
+        const randomNumber = Math.floor(1000 + Math.random() * 9000); // Gera um número aleatório de 4 dígitos
+        const username = `${baseUsername}#${randomNumber}`;
+
+        // Simulação de login bem-sucedido
+        loginBtn.style.display = 'none';
+        profile.style.display = 'block';
+        profileName.textContent = username;
+
+        loginModal.style.display = 'none';
+    });
+
+    // Submissão do formulário de registro
+    document.getElementById('registerForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const baseUsername = document.getElementById('reg-username').value;
+        const randomNumber = Math.floor(1000 + Math.random() * 9000); // Gera um número aleatório de 4 dígitos
+        const username = `${baseUsername}#${randomNumber}`;
+        const email = document.getElementById('reg-email').value;
+
+        // Salva o usuário registrado no localStorage
+        const user = { username, email };
+        localStorage.setItem('registeredUser', JSON.stringify(user));
+
+        // Simulação de cadastro bem-sucedido
+        profileName.textContent = username;
+        loginBtn.style.display = 'none';
+        profile.style.display = 'block';
+
+        loginModal.style.display = 'none';
+    });
+});
+
+// Função para sair e recarregar a página
+function Sair() {
+    localStorage.removeItem('registeredUser');
+    window.location.reload();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const openModalLinks = document.querySelectorAll('.open-modal');
+    
+    openModalLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const modalId = this.getAttribute('data-modal');
+            openModal(modalId);
+        });
+    });
+
+    function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.style.display = 'block';
+        }
+    }
+
+    function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Close modals when clicking outside of the modal content
+    window.addEventListener('click', function (e) {
+        const modals = document.querySelectorAll('.modal-profile');
+        modals.forEach(modal => {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+
+    window.closeModal = closeModal; // Make closeModal function global
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const reportForm = document.getElementById('reportErrorForm');
+
+    reportForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Obtém os dados do formulário
+        const title = document.getElementById('errorTitle').value;
+        const description = document.getElementById('errorDescription').value;
+        const date = document.getElementById('errorDate').value;
+        const user = document.getElementById('errorUser').value;
+
+        // Gera um novo ID no formato RC#XXXX
+        const reports = JSON.parse(localStorage.getItem('reports')) || [];
+        const newId = generateReportId(reports);
+
+        // Cria um objeto de relatório
+        const report = {
+            id: newId,
+            title: title,
+            description: description,
+            date: date,
+            status: '<span class="status pending">Pendente</span>',  // Armazena como HTML
+            user: user
+        };
+
+        // Adiciona o novo relatório
+        reports.push(report);
+
+        // Salva os relatórios atualizados no localStorage
+        localStorage.setItem('reports', JSON.stringify(reports));
+
+        // Fecha o modal
+        closeModal('reportError');
+    });
+
+    function generateReportId(reports) {
+        // Gera um número aleatório de 4 dígitos
+        const newNumber = Math.floor(1000 + Math.random() * 9000);
+        return `RC#${String(newNumber).padStart(4, '0')}`;
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'none';  // Oculta o modal
+        }
+    }
+});
+
+    </script>
+</body>
+</html>

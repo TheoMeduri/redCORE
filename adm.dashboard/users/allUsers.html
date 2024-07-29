@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Red Core - Admin</title>
+    <style>
+        /* Estilos para a área de conteúdo */
+        .content {
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            max-width: 100%;
+            margin: auto;
+        }
+
+        body.dark-mode .content {
+            background-color: #242424;
+            box-shadow: 0 0 5px #161616;
+        }
+        
+        /* Estilos para a tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #2c3e50;
+        }
+        
+        /* Estilos para os botões */
+        .btn {
+            padding: 8px 12px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+        }
+        
+        .btn-change {
+            background-color: #3498db;
+        }
+        
+        .btn-change:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-copy {
+            background-color: #27ae60;
+        }
+        
+        .btn-copy:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../../Logo-RedCORE-Branco-Horizontal.png" alt="Red Core">
+            </div>
+            <div class="search-bar">
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Pesquise aqui..." id="searchInput">
+                <span class="pi-icon" id="piIcon">PI</span>
+            </div>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="../index.html">
+                        <span class="icon"><i class='bx bxs-dashboard'></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <span class="icon"><i class='bx bx-user'></i></span>
+                        <span class="title">Users</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="./allUsers.html" class="active"><span class="submenu-icon"><i class='bx bx-list-ul'></i></span>All Users</a></li>
+                        <li><a href="./newUser.html"><span class="submenu-icon"><i class='bx bx-user-plus'></i></span>Add New</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <span class="icon"><i class='bx bx-receipt'></i></span>
+                        <span class="title">Relatórios</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="../relatorios/alarmes.html"><span class="submenu-icon"><i class='bx bx-alarm'></i></span>Relatórios de Alarmes</a></li>
+                        <li><a href="../relatorios/service.html"><span class="submenu-icon"><i class='bx bx-user-voice'></i></span>Relatório de Atendimento</a></li>
+                        <li><a href="../relatorios/chamado.html"><span class="submenu-icon"><i class='bx bxs-key'></i></span>Abertura de Chamado</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="../reports.html">
+                        <span class="icon"><i class='bx bx-chart'></i></span>
+                        <span class="title">Reports</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="../configs.html">
+                        <span class="icon"><i class='bx bx-cog'></i></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="profile">
+                <a href="#">
+                    <div class="profile-info">
+                        <img src="profile-pic.jpg" alt="Profile Picture">
+                        <span class="name" id="profileName" onclick="Profile()"></span>
+                    </div>
+                    <span class="icon" id="logoutButton"><i class='bx bx-log-out'></i></span>
+                </a>
+            </div>
+        </nav>
+        <div class="main-content">
+            <header>
+                <h1>Todos os Usuários</h1>
+            </header>
+            <div class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone/Email</th>
+                            <th>CNPJ</th>
+                            <th>Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <!-- Dados dos usuários serão inseridos aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const userTableBody = document.getElementById('userTableBody');
+    
+    // Recupera usuários do localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    // Preenche a tabela com dados dos usuários
+    users.forEach(user => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${user.name}</td>
+            <td>${user.contact}</td>
+            <td>${user.cnpj}</td>
+            <td>
+                <button class="btn btn-change" onclick="changePassword('${user.contact}')">Mudar Senha</button>
+                <button class="btn btn-copy" onclick="copyId('${user.contact}')">Copiar ID</button>
+            </td>
+        `;
+        userTableBody.appendChild(row);
+    });
+});
+
+function changePassword(userContact) {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(u => u.contact === userContact);
+
+    if (user) {
+        const newPassword = prompt('Digite a nova senha:');
+        if (newPassword) {
+            user.password = newPassword;
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Senha atualizada com sucesso!');
+        }
+    } else {
+        alert('Usuário não encontrado.');
+    }
+}
+
+function copyId(userContact) {
+    navigator.clipboard.writeText(userContact)
+        .then(() => {
+            alert('ID copiado para a área de transferência!');
+        })
+        .catch(err => {
+            alert('Erro ao copiar ID: ' + err);
+        });
+}
+
+// Dados de login com nomes
+const validUsers = [
+    { username: 'Gabriel Meduri', password: 'Roots123', name: 'Gabriel Meduri' },
+    { username: 'Theo Meduri', password: 'Roots123', name: 'Theo Meduri' },
+    { username: 'admin3', password: 'pass789', name: 'Admin 3' },
+    { username: 'admin4', password: 'pass000', name: 'Admin 4' },
+    { username: 'admin5', password: 'pass111', name: 'Admin 5' }
+];
+
+// Mostrar o modal ao carregar a página se não estiver logado
+window.addEventListener('load', () => {
+    const loginModal = document.getElementById('loginModal');
+    const closeButton = document.querySelector('.close-button');
+    const loginForm = document.getElementById('loginForm');
+    const profileName = document.getElementById('profileName');
+    const profileInfo = document.querySelector('.profile-info');
+
+    // Verifica se o usuário está logado
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+        // Usuário está logado, exibe o nome do perfil
+        const user = JSON.parse(loggedInUser);
+        profileName.textContent = user.name;
+        const initial = user.name.charAt(0).toUpperCase(); // Pega a inicial do nome
+        const profileImg = document.querySelector('.profile-info img');
+        profileImg.style.display = 'none'; // Oculta a imagem de perfil existente
+        const avatar = document.createElement('div');
+        avatar.classList.add('avatar');
+        avatar.textContent = initial;
+        profileInfo.insertBefore(avatar, profileName);
+        loginModal.style.display = 'none';
+    } else {
+        // Usuário não está logado, exibe o modal de login
+        loginModal.style.display = 'block';
+    }
+
+    // Fechar o modal
+    closeButton.addEventListener('click', () => {
+        if (!localStorage.getItem('loggedInUser')) {
+            // Se não estiver logado, não fecha o modal
+            alert('Você precisa fazer login para fechar este modal.');
+        } else {
+            loginModal.style.display = 'none';
+        }
+    });
+
+    // Submissão do formulário de login
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const user = validUsers.find(user => user.username === username && user.password === password);
+
+        if (user) {
+            // Usuário validado
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+            loginModal.style.display = 'none';
+            const initial = user.name.charAt(0).toUpperCase(); // Pega a inicial do nome
+            profileName.textContent = user.name; // Atualiza o nome do perfil
+
+            // Atualiza a imagem do perfil com a inicial
+            const profileImg = document.querySelector('.profile-info img');
+            profileImg.style.display = 'none'; // Oculta a imagem de perfil existente
+            const avatar = document.createElement('div');
+            avatar.classList.add('avatar');
+            avatar.textContent = initial;
+            profileInfo.insertBefore(avatar, profileName);
+        } else {
+            alert('Usuário ou senha incorretos.');
+        }
+    });
+});
+
+function Profile() {
+    window.location.href = 'profile.html';
+}
+
+    </script>
+
+<script src="../script.js"></script>
+<script src="../js/dark-mode.js"></script>
+</body>
+</html>

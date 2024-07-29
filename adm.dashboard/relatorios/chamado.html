@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Red Core - Admin</title>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../../Logo-RedCORE-Branco-Horizontal.png" alt="Red Core">
+            </div>
+            <div class="search-bar">
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Pesquise aqui..." id="searchInput">
+                <span class="pi-icon" id="piIcon">PI</span>
+            </div>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="../index.html">
+                        <span class="icon"><i class='bx bxs-dashboard'></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <span class="icon"><i class='bx bx-user'></i></span>
+                        <span class="title">Users</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="../users/allUsers.html"><span class="submenu-icon"><i class='bx bx-list-ul'></i></span>All Users</a></li>
+                        <li><a href="../users/newUser.html"><span class="submenu-icon"><i class='bx bx-user-plus'></i></span>Add New</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <span class="icon"><i class='bx bx-receipt'></i></span>
+                        <span class="title">Relatórios</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="./alarmes.html"><span class="submenu-icon"><i class='bx bx-alarm'></i></span>Relatórios de Alarmes</a></li>
+                        <li><a href="./service.html"><span class="submenu-icon"><i class='bx bx-user-voice'></i></span>Relatório de Atendimento</a></li>
+                        <li><a href="chamado.html" class="active"><span class="submenu-icon"><i class='bx bxs-key'></i></span>Abertura de Chamado</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="../reports.html">
+                        <span class="icon"><i class='bx bx-chart'></i></span>
+                        <span class="title">Reports</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="../configs.html">
+                        <span class="icon"><i class='bx bx-cog'></i></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="profile">
+                <a href="#">
+                    <div class="profile-info">
+                        <img src="profile-pic.jpg" alt="Profile Picture">
+                        <span class="name" id="profileName" onclick="Profile()"></span>
+                    </div>
+                    <span class="icon" id="logoutButton"><i class='bx bx-log-out'></i></span>
+                </a>
+            </div>
+        </nav>
+        <div class="main-content">
+            <header>
+                <h1>Abertura de Chamado</h1>
+            </header>
+            <div class="content">
+                  <!-- Main content goes here -->
+                  <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descrição</th>
+                                <th>Data do Chamado</th>
+                                <th>Status</th>
+                                <th>Usuário</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                             <!-- Será preenchido com java script. -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="../Logo-RedCORE-Preto-Horizontal.png" alt="">
+            <h2>Login</h2>
+            <br>
+            <form id="loginForm">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/login-register.js"></script>
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.querySelector('tbody');
+
+            tableBody.addEventListener('click', (event) => {
+                if (event.target.classList.contains('btn')) {
+                    const button = event.target;
+                    const row = button.closest('tr');
+                    const id = button.getAttribute('data-id');
+                    const statusCell = row.querySelector('.status');
+
+                    if (button.classList.contains('resolve')) {
+                        // Marcar como Resolvido
+                        statusCell.textContent = 'Resolvido';
+                        statusCell.classList.remove('pending');
+                        statusCell.classList.remove('in-progress');
+                        statusCell.classList.remove('critical');
+                        statusCell.classList.add('resolved');
+                        button.disabled = true; // Desabilita o botão após ser clicado
+                    } else if (button.classList.contains('delete')) {
+                        // Excluir Erro
+                        row.remove();
+                    }
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const tableBody = document.querySelector('tbody');
+
+    // Obtém os relatórios do localStorage
+    let reports = JSON.parse(localStorage.getItem('reports')) || [];
+
+    // Preenche a tabela com os relatórios
+    reports.forEach(report => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${report.id}</td>
+            <td>${report.description}</td>
+            <td>${report.date}</td>
+            <td>${report.status}</td> <!-- Exibe o status como HTML -->
+            <td>${report.user}</td>
+            <td>
+                <button class="btn resolve" data-id="${report.id}">Marcar como Resolvido</button>
+                <button class="btn delete" data-id="${report.id}">Excluir Erro</button>
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+
+    // Manipula os botões de marcar como resolvido e excluir
+    tableBody.addEventListener('click', (event) => {
+        if (event.target.classList.contains('btn')) {
+            const button = event.target;
+            const row = button.closest('tr');
+            const id = button.getAttribute('data-id');
+            const statusCell = row.querySelector('td:nth-child(4)');
+
+            if (button.classList.contains('resolve')) {
+                // Marcar como Resolvido
+                statusCell.innerHTML = '<span class="status resolved">Resolvido</span>';
+                button.disabled = true; // Desabilita o botão após ser clicado
+                updateReportStatus(id, '<span class="status resolved">Resolvido</span>');
+            } else if (button.classList.contains('delete')) {
+                // Excluir Erro
+                row.remove();
+                deleteReport(id);
+            }
+        }
+    });
+
+    function updateReportStatus(id, statusHtml) {
+        let reports = JSON.parse(localStorage.getItem('reports')) || [];
+        reports = reports.map(report => report.id === id ? { ...report, status: statusHtml } : report);
+        localStorage.setItem('reports', JSON.stringify(reports));
+    }
+
+    function deleteReport(id) {
+        let reports = JSON.parse(localStorage.getItem('reports')) || [];
+        reports = reports.filter(report => report.id !== id);
+        localStorage.setItem('reports', JSON.stringify(reports));
+    }
+});
+
+    </script>
+    <script src="../js/dark-mode.js"></script>
+</body>
+</html>

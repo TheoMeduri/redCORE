@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Red Core - Admin</title>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../Logo-RedCORE-Branco-Horizontal.png" alt="Red Core">
+            </div>
+            <div class="search-bar">
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Pesquise aqui..." id="searchInput">
+                <span class="pi-icon" id="piIcon">PI</span>
+            </div>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="index.html">
+                        <span class="icon"><i class='bx bxs-dashboard'></i></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <span class="icon"><i class='bx bx-user'></i></span>
+                        <span class="title">Users</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="./users/allUsers.html"><span class="submenu-icon"><i class='bx bx-list-ul'></i></span>All Users</a></li>
+                        <li><a href="./users/newUser.html"><span class="submenu-icon"><i class='bx bx-user-plus'></i></span>Add New</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="#">
+                        <span class="icon"><i class='bx bx-receipt'></i></span>
+                        <span class="title">Relatórios</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="./relatorios/alarmes.html"><span class="submenu-icon"><i class='bx bx-alarm'></i></span>Relatórios de Alarmes</a></li>
+                        <li><a href="./relatorios/service.html"><span class="submenu-icon"><i class='bx bx-user-voice'></i></span>Relatório de Atendimento</a></li>
+                        <li><a href="./relatorios/chamado.html"><span class="submenu-icon"><i class='bx bxs-key'></i></span>Abertura de Chamado</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="./reports.html">
+                        <span class="icon"><i class='bx bx-chart'></i></span>
+                        <span class="title">Reports</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="./configs.html">
+                        <span class="icon"><i class='bx bx-cog'></i></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="profile">
+                <a href="#">
+                    <div class="profile-info">
+                        <img src="profile-pic.jpg" alt="Profile Picture">
+                        <span class="name" id="profileName" onclick="Profile()"></span>
+                    </div>
+                    <span class="icon" id="logoutButton"><i class='bx bx-log-out'></i></span>
+                </a>
+            </div>
+        </nav>
+        <div class="main-content">
+            <header>
+                <h1>Configurações</h1>
+            </header>
+            <div class="content"><br>
+                <div class="toggle-container">
+                    <!-- Seção de Notificações -->
+                    <h3>Notificações</h3><br>
+                    <div class="toggle-label">
+                        <span>Notificações Push</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notificationsToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Ative ou desative as notificações push que você receberá. Quando ativado, você receberá todas as atualizações e alertas do sistema. <br> <span>26-07-24</span></p>
+                    <br>
+                    <div class="toggle-label">
+                        <span>Notificações Email</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notificationsEmailToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Ative ou desative as notificações email que você receberá. Quando ativado, você receberá todas as atualizações e alertas do sistema no email. <br> <span>26-07-24 - Desabilitado</span></p>
+                    <br>
+                
+                    <!-- Seção de Temas do Site -->
+                    <h3>Temas do Site</h3><br>
+                    <div class="toggle-label">
+                        <span>Tema Escuro</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="darkModeToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Escolha entre o tema claro ou escuro para a interface do site. O modo escuro reduz o brilho da tela e pode ser mais confortável para os olhos em ambientes com pouca luz. <br> <span>28-07-24</span></p>
+                    <br>
+                    <div class="toggle-label">
+                        <span>Tema Daltonismo</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="daltonicoModeToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Ative ou desative o modo de tema otimizado para daltônicos. Este modo ajusta as cores e os contrastes do tema para garantir que a interface seja acessível para pessoas com diferentes tipos de daltonismo. <br> <span>28-07-24 - Desabilitado</span></p>
+                    <br>
+                
+                    <!-- Seção de Modos ADM -->
+                    <h3>Modos ADM</h3><br>
+                    <div class="toggle-label">
+                        <span>Modo de Manutenção</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="maintenanceModeToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <p>Ative este modo para colocar o site em manutenção. Isso permitirá que você faça alterações importantes sem que os usuários acessem o conteúdo. Observe que o modo de manutenção não pode ser ativado diretamente por um usuário. <br> <span>26-07-24</span></p>
+                <br>
+                <div class="toggle-label">
+                    <span>Modo Easy</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="easyModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p>Ao ativar o site fica mais fácil de navegar, tornando a navegação melhor para adms <br> <span>26-07-24</span></p>
+                <br>
+                <!-- Seção de Tags -->
+                <h3>Controle de Usuários</h3><br>
+                <div class="toggle-label">
+                    <span>Pesquisa Inteligente (PI)</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="PIModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p>Ative o modo de Pesquisa Inteligente para otimizar a busca de usuários utilizando suas tags. Este recurso facilita a localização e gerenciamento de perfis para os administradores, tornando o processo mais eficiente e ágil. <br> <span>28-07-24</span></p>
+                <br>
+                <div class="toggle-label">
+                    <span>Consolidação de Contas</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="juntarModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p>Ative este recurso para consolidar todas as contas associadas ao mesmo e-mail ou número de telefone em uma única conta, evitando a duplicação de registros no sistema. <br> <span>28-07-24 - Desabilitado</span></p>
+                <br>
+                <!-- <div class="toggle-label">
+                    <span>-------</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="creatingModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p>-------------------------------------<br> <span>----- - Em Criação</span></p>
+                <br>  -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="../Logo-RedCORE-Preto-Horizontal.png" alt="">
+            <h2>Login</h2>
+            <br>
+            <form id="loginForm">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+       // Dados de login com nomes
+const validUsers = [
+    { username: 'Gabriel Meduri', password: 'Roots123', name: 'Gabriel Meduri' },
+    { username: 'Theo Meduri', password: 'Roots123', name: 'Theo Meduri' },
+    { username: 'admin3', password: 'pass789', name: 'Admin 3' },
+    { username: 'admin4', password: 'pass000', name: 'Admin 4' },
+    { username: 'admin5', password: 'pass111', name: 'Admin 5' }
+];
+
+// Mostrar o modal ao carregar a página se não estiver logado
+window.addEventListener('load', () => {
+    const loginModal = document.getElementById('loginModal');
+    const closeButton = document.querySelector('.close-button');
+    const loginForm = document.getElementById('loginForm');
+    const profileName = document.getElementById('profileName');
+    const profileInfo = document.querySelector('.profile-info');
+
+    // Verifica se o usuário está logado
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+        // Usuário está logado, exibe o nome do perfil
+        const user = JSON.parse(loggedInUser);
+        profileName.textContent = user.name;
+        const initial = user.name.charAt(0).toUpperCase(); // Pega a inicial do nome
+        const profileImg = document.querySelector('.profile-info img');
+        profileImg.style.display = 'none'; // Oculta a imagem de perfil existente
+        const avatar = document.createElement('div');
+        avatar.classList.add('avatar');
+        avatar.textContent = initial;
+        profileInfo.insertBefore(avatar, profileName);
+        loginModal.style.display = 'none';
+    } else {
+        // Usuário não está logado, exibe o modal de login
+        loginModal.style.display = 'block';
+    }
+
+    // Fechar o modal
+    closeButton.addEventListener('click', () => {
+        if (!localStorage.getItem('loggedInUser')) {
+            // Se não estiver logado, não fecha o modal
+            alert('Você precisa fazer login para fechar este modal.');
+        } else {
+            loginModal.style.display = 'none';
+        }
+    });
+
+    // Submissão do formulário de login
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const user = validUsers.find(user => user.username === username && user.password === password);
+
+        if (user) {
+            // Usuário validado
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+            loginModal.style.display = 'none';
+            const initial = user.name.charAt(0).toUpperCase(); // Pega a inicial do nome
+            profileName.textContent = user.name; // Atualiza o nome do perfil
+
+            // Atualiza a imagem do perfil com a inicial
+            const profileImg = document.querySelector('.profile-info img');
+            profileImg.style.display = 'none'; // Oculta a imagem de perfil existente
+            const avatar = document.createElement('div');
+            avatar.classList.add('avatar');
+            avatar.textContent = initial;
+            profileInfo.insertBefore(avatar, profileName);
+        } else {
+            alert('Usuário ou senha incorretos.');
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const modalMaintenance = document.getElementById('manutencao');
+    // Seleciona todos os toggles
+    const notificationsToggle = document.getElementById('notificationsToggle');
+    const notificationsEmailToggle = document.getElementById('notificationsEmailToggle');
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const maintenanceModeToggle = document.getElementById('maintenanceModeToggle');
+    const easyModeToggle = document.getElementById('easyModeToggle');
+    const juntarModeToggle = document.getElementById('juntarModeToggle');
+    const PIModeToggle = document.getElementById('PIModeToggle');
+    const daltonicoModeToggle = document.getElementById('daltonicoModeToggle');
+    // const creatingModeToggle = document.getElementById('creatingModeToggle');
+
+    // Carrega os estados dos toggles do localStorage, se disponíveis
+    notificationsToggle.checked = JSON.parse(localStorage.getItem('notifications')) || false;
+    darkModeToggle.checked = JSON.parse(localStorage.getItem('darkMode')) || false;
+    maintenanceModeToggle.checked = JSON.parse(localStorage.getItem('maintenanceMode')) || false;
+    easyModeToggle.checked = JSON.parse(localStorage.getItem('easyMode')) || true;
+    notificationsEmailToggle.checked = JSON.parse(localStorage.getItem('notificationsEmailMode')) || false;
+    juntarModeToggle.checked = JSON.parse(localStorage.getItem('juntarMode')) || false;
+    PIModeToggle.checked = JSON.parse(localStorage.getItem('PIMode')) || false;
+    // creatingModeToggle.checked = JSON.parse(localStorage.getItem('creatingMode')) || false;
+    daltonicoModeToggle.checked = JSON.parse(localStorage.getItem('daltonicoMode')) || false;
+
+    // Aplica o modo escuro se estiver ativado
+    document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+
+    // Função para verificar o estado do modo PI e ajustar a visibilidade do ícone PI
+    function checkPIMode() {
+        const piMode = localStorage.getItem('PIMode') === 'true';
+        const piIcon = document.getElementById('piIcon');
+        piIcon.style.display = piMode ? 'block' : 'none';
+    }
+
+    // Verifica o estado do modo PI ao carregar a página
+    checkPIMode();
+
+    // Salva os estados dos toggles no localStorage
+    notificationsToggle.addEventListener('change', () => {
+        localStorage.setItem('notifications', notificationsToggle.checked);
+        if (notificationsToggle.checked) {
+            alert("As notificações estão ativas, você receberá todas as notificações.");
+        } else {
+            alert("As notificações estão desativadas.");
+        }
+    });
+
+        darkModeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+            localStorage.setItem('darkMode', darkModeToggle.checked);
+        });
+
+        maintenanceModeToggle.addEventListener('change', () => {
+        const isMaintenanceMode = maintenanceModeToggle.checked;
+        localStorage.setItem('maintenanceMode', isMaintenanceMode);
+
+        if (isMaintenanceMode) {
+            alert("O site Red Core - Cliente está em manutenção.");
+            modalMaintenance.style.display = "block";
+        } else {
+            alert("O site Red Core - Cliente saiu do modo de manutenção.");
+            modalMaintenance.style.display = "none";
+        }
+    });
+
+    // Verificar o estado do modo de manutenção ao carregar a página
+    window.addEventListener('load', () => {
+        const isMaintenanceMode = JSON.parse(localStorage.getItem('maintenanceMode')) || false;
+        if (isMaintenanceMode) {
+            modalMaintenance.style.display = "block";
+        } else {
+            modalMaintenance.style.display = "none";
+        }
+        maintenanceModeToggle.checked = isMaintenanceMode;
+    });
+
+
+
+    juntarModeToggle.addEventListener('change', () => {
+        // Não permite ativar o modo de consolidação de contas
+        alert("Não é possível ligar o modo de Consolidação de Contas. Esse modo ainda não está liberado.");
+        juntarModeToggle.checked = false; // Reverte o toggle para desativado
+        localStorage.setItem('juntarMode', false);
+    });
+
+    PIModeToggle.addEventListener('change', () => {
+        // Permite ativar ou desativar o modo de Pesquisa Inteligente (PI)
+        const piModeEnabled = PIModeToggle.checked;
+        localStorage.setItem('PIMode', piModeEnabled);
+        checkPIMode(); // Atualiza a visibilidade do ícone PI
+    });
+
+    // creatingModeToggle.addEventListener('change', () => {
+    //     // Não permite ativar o modo de criação
+    //     alert("Não é possível ligar o modo de criação. Esse modo ainda não está liberado.");
+    //     creatingModeToggle.checked = false; // Reverte o toggle para desativado
+    //     localStorage.setItem('creatingMode', false);
+    // });
+
+    daltonicoModeToggle.addEventListener('change', () => {
+        // Não permite ativar o modo de manutenção
+        alert("Não é possível ligar o modo para daltônicos. Esse modo ainda não está liberado.");
+        daltonicoModeToggle.checked = false; // Reverte o toggle para desativado
+        localStorage.setItem('daltonicoMode', false);
+    });
+
+    easyModeToggle.addEventListener('change', () => {
+        // Não permite desativar o modo Easy
+        alert("Não é possível desligar o modo Easy. Esse modo só pode ser desligado por administradores permitidos.");
+        easyModeToggle.checked = true; // Reverte o toggle para ativado
+        localStorage.setItem('easyMode', true);
+    });
+
+    notificationsEmailToggle.addEventListener('change', () => {
+        // Não permite ativar o modo de notificações por email
+        alert("Não é possível ligar as notificações de email. Esse modo está inativo por tempo indeterminado.");
+        notificationsEmailToggle.checked = false; // Reverte o toggle para desativado
+        localStorage.setItem('notificationsEmailMode', false);
+    });
+});
+
+
+
+    </script>
+
+    <script src="./js/login-register.js"></script>
+</body>
+</html>
