@@ -2,7 +2,7 @@
          const validUsers = [
             { username: 'Gabriel Meduri', password: 'Roots123', name: 'Gabriel Meduri' },
             { username: 'Theo Meduri', password: 'Roots123', name: 'Theo Meduri' },
-            { username: 'admin3', password: 'pass789', name: 'Admin 3' },
+            { username: 'Vinicius Coletti', password: 'RedCore2024', name: 'Vinicius Coletti' },
             { username: 'admin4', password: 'pass000', name: 'Admin 4' },
             { username: 'admin5', password: 'pass111', name: 'Admin 5' }
         ];
